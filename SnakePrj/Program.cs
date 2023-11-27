@@ -111,7 +111,10 @@ namespace SnakePrj
                                 {
                                     paused = !paused;
                                 }
-
+                                if (toets.Key.Equals(ConsoleKey.Escape))
+                                {
+                                    Environment.Exit(0);
+                                }
                             }
 
                         }
