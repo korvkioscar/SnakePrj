@@ -36,15 +36,21 @@ namespace SnakePrj
                 // We only draw the border once. It doesn't change.
                 DrawBorder(screenwidth, screenheight);
 
+                bool paused = false;
                 while (true)
                 {
                     ClearConsole(screenwidth, screenheight);
                     if (hoofd.xpos == screenwidth - 1 || hoofd.xpos == 0 || hoofd.ypos == screenheight - 1 || hoofd.ypos == 0)
                     {
                         gameover = 1;
-                    }
+                    } 
 
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    if (!paused)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+
                     if (berryx == hoofd.xpos && berryy == hoofd.ypos)
                     {
                         score++;
@@ -101,8 +107,14 @@ namespace SnakePrj
                                 movement = "RIGHT";
                                 buttonpressed = "yes";
                             }
+                                if (toets.Key.Equals(ConsoleKey.P))
+                                {
+                                    paused = !paused;
+                                }
+
+                            }
+
                         }
-                    }
                     xposlijf.Add(hoofd.xpos);
                     yposlijf.Add(hoofd.ypos);
                     switch (movement)
@@ -124,6 +136,12 @@ namespace SnakePrj
                     {
                         xposlijf.RemoveAt(0);
                         yposlijf.RemoveAt(0);
+                    }
+                        else
+                        {
+                            Console.SetCursorPosition(screenwidth / 5, screenheight / 2);
+                            Console.WriteLine("Game Paused. Press 'P' to resume.");
+                        }
                     }
                 }
                 Console.SetCursorPosition(screenwidth / 5, screenheight / 2);
