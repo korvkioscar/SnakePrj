@@ -13,6 +13,15 @@ namespace SnakePrj
         {
             static void Main(string[] args)
             {
+                //Choose difficulty
+                int choicelvl, speedlvl = 400;
+                Console.WriteLine("Choose level:\n1. Easy\n2. Medium\n3.Hard");
+                choicelvl = int.Parse(Console.ReadLine());
+                if (choicelvl == 1) speedlvl = 400;
+                else if (choicelvl == 2) speedlvl = 200;
+                else if (choicelvl == 3) speedlvl = 100;
+                else Console.WriteLine("Wrong input!");
+
                 Console.WindowHeight = 16;
                 Console.WindowWidth = 32;
                 int screenwidth = Console.WindowWidth;
@@ -33,15 +42,6 @@ namespace SnakePrj
                 DateTime tid2 = DateTime.Now;
                 string buttonpressed = "no";
                
-                //Choose difficulty
-                int choicelvl, speedlvl = 400;
-                Console.WriteLine("Choose level:\n1. Easy\n2. Medium\n3.Hard");
-                choicelvl = int.Parse(Console.ReadLine());
-                if (choicelvl == 1) speedlvl = 400;
-                else if (choicelvl == 2) speedlvl = 200;
-                else if (choicelvl == 3) speedlvl = 100;
-                else Console.WriteLine("Wrong input!"); 
-
                 // We only draw the border once. It doesn't change.
                 DrawBorder(screenwidth, screenheight);
 
@@ -52,15 +52,14 @@ namespace SnakePrj
                     if (snakehead.xpos == screenwidth - 1 || snakehead.xpos == 0 || snakehead.ypos == screenheight - 1 || snakehead.ypos == 0)
                     {
                         gameover = 1;
-                    } 
-
+                    }
                     if (!paused)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
 
                         Console.ForegroundColor = ConsoleColor.Green;
 
-                    if (berryx == snakehead.xpos && berryy == snakehead.ypos)
+                        if (berryx == snakehead.xpos && berryy == snakehead.ypos)
                     {
                         score++;
                         berryx = randomnummer.Next(1, screenwidth - 2);
