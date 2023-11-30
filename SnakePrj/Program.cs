@@ -32,6 +32,15 @@ namespace SnakePrj
                 DateTime tid = DateTime.Now;
                 DateTime tid2 = DateTime.Now;
                 string buttonpressed = "no";
+               
+                //Choose difficulty
+                int choicelvl, speedlvl = 400;
+                Console.WriteLine("Choose level:\n1. Easy\n2. Medium\n3.Hard");
+                choicelvl = int.Parse(Console.ReadLine());
+                if (choicelvl == 1) speedlvl = 400;
+                else if (choicelvl == 2) speedlvl = 200;
+                else if (choicelvl == 3) speedlvl = 100;
+                else Console.WriteLine("Wrong input!"); 
 
                 // We only draw the border once. It doesn't change.
                 DrawBorder(screenwidth, screenheight);
@@ -82,7 +91,7 @@ namespace SnakePrj
                     while (true)
                     {
                         tid2 = DateTime.Now;
-                        if (tid2.Subtract(tid).TotalMilliseconds > 400) { break; }
+                        if (tid2.Subtract(tid).TotalMilliseconds > speedlvl) { break; }
                         if (Console.KeyAvailable)
                         {
                             ConsoleKeyInfo testa = Console.ReadKey(true);
