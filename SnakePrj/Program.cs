@@ -20,10 +20,10 @@ namespace SnakePrj
                 Random randomnummer = new Random();
                 int score = 5;
                 int gameover = 0;
-                pixel hoofd = new pixel();
-                hoofd.xpos = screenwidth / 2;
-                hoofd.ypos = screenheight / 2;
-                hoofd.schermkleur = ConsoleColor.Red;
+                pixel snakehead = new pixel();
+                snakehead.xpos = screenwidth / 2;
+                snakehead.ypos = screenheight / 2;
+                snakehead.block = ConsoleColor.Red;
                 string movement = "RIGHT";
                 List<int> xposlijf = new List<int>();
                 List<int> yposlijf = new List<int>();
@@ -40,7 +40,7 @@ namespace SnakePrj
                 while (true)
                 {
                     ClearConsole(screenwidth, screenheight);
-                    if (hoofd.xpos == screenwidth - 1 || hoofd.xpos == 0 || hoofd.ypos == screenheight - 1 || hoofd.ypos == 0)
+                    if (snakehead.xpos == screenwidth - 1 || snakehead.xpos == 0 || snakehead.ypos == screenheight - 1 || snakehead.ypos == 0)
                     {
                         gameover = 1;
                     } 
@@ -51,7 +51,7 @@ namespace SnakePrj
 
                         Console.ForegroundColor = ConsoleColor.Green;
 
-                    if (berryx == hoofd.xpos && berryy == hoofd.ypos)
+                    if (berryx == snakehead.xpos && berryy == snakehead.ypos)
                     {
                         score++;
                         berryx = randomnummer.Next(1, screenwidth - 2);
@@ -61,7 +61,7 @@ namespace SnakePrj
                     {
                         Console.SetCursorPosition(xposlijf[i], yposlijf[i]);
                         Console.Write("¦");
-                        if (xposlijf[i] == hoofd.xpos && yposlijf[i] == hoofd.ypos)
+                        if (xposlijf[i] == snakehead.xpos && yposlijf[i] == snakehead.ypos)
                         {
                             gameover = 1;
                         }
@@ -70,8 +70,8 @@ namespace SnakePrj
                     {
                         break;
                     }
-                    Console.SetCursorPosition(hoofd.xpos, hoofd.ypos);
-                    Console.ForegroundColor = hoofd.schermkleur;
+                    Console.SetCursorPosition(snakehead.xpos, snakehead.ypos);
+                    Console.ForegroundColor = snakehead.block;
                     Console.Write("■");
                     Console.SetCursorPosition(berryx, berryy);
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -118,21 +118,21 @@ namespace SnakePrj
                             }
 
                         }
-                    xposlijf.Add(hoofd.xpos);
-                    yposlijf.Add(hoofd.ypos);
+                    xposlijf.Add(snakehead.xpos);
+                    yposlijf.Add(snakehead.ypos);
                     switch (movement)
                     {
                         case "UP":
-                            hoofd.ypos--;
+                            snakehead.ypos--;
                             break;
                         case "DOWN":
-                            hoofd.ypos++;
+                            snakehead.ypos++;
                             break;
                         case "LEFT":
-                            hoofd.xpos--;
+                            snakehead.xpos--;
                             break;
                         case "RIGHT":
-                            hoofd.xpos++;
+                            snakehead.xpos++;
                             break;
                     }
                     if (xposlijf.Count() > score)
@@ -185,7 +185,7 @@ namespace SnakePrj
             {
                 public int xpos { get; set; }
                 public int ypos { get; set; }
-                public ConsoleColor schermkleur { get; set; }
+                public ConsoleColor block { get; set; }
             }
         }
     }
