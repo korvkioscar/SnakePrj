@@ -25,12 +25,12 @@ namespace SnakePrj
                 snakehead.ypos = screenheight / 2;
                 snakehead.block = ConsoleColor.Red;
                 string movement = "RIGHT";
-                List<int> xposlijf = new List<int>();
-                List<int> yposlijf = new List<int>();
+                List<int> xposkropp = new List<int>();
+                List<int> yposkropp = new List<int>();
                 int berryx = randomnummer.Next(0, screenwidth);
                 int berryy = randomnummer.Next(0, screenheight);
-                DateTime tijd = DateTime.Now;
-                DateTime tijd2 = DateTime.Now;
+                DateTime tid = DateTime.Now;
+                DateTime tid2 = DateTime.Now;
                 string buttonpressed = "no";
 
                 // We only draw the border once. It doesn't change.
@@ -57,11 +57,11 @@ namespace SnakePrj
                         berryx = randomnummer.Next(1, screenwidth - 2);
                         berryy = randomnummer.Next(1, screenheight - 2);
                     }
-                    for (int i = 0; i < xposlijf.Count(); i++)
+                    for (int i = 0; i < xposkropp.Count(); i++)
                     {
-                        Console.SetCursorPosition(xposlijf[i], yposlijf[i]);
+                        Console.SetCursorPosition(xposkropp[i], yposkropp[i]);
                         Console.Write("*");
-                        if (xposlijf[i] == snakehead.xpos && yposlijf[i] == snakehead.ypos)
+                        if (xposkropp[i] == snakehead.xpos && yposkropp[i] == snakehead.ypos)
                         {
                             gameover = 1;
                         }
@@ -77,49 +77,49 @@ namespace SnakePrj
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write("■");
                     Console.CursorVisible = false;
-                    tijd = DateTime.Now;
+                    tid = DateTime.Now;
                     buttonpressed = "no";
                     while (true)
                     {
-                        tijd2 = DateTime.Now;
-                        if (tijd2.Subtract(tijd).TotalMilliseconds > 500) { break; }
+                        tid2 = DateTime.Now;
+                        if (tid2.Subtract(tid).TotalMilliseconds > 400) { break; }
                         if (Console.KeyAvailable)
                         {
-                            ConsoleKeyInfo toets = Console.ReadKey(true);
+                            ConsoleKeyInfo testa = Console.ReadKey(true);
                             //Console.WriteLine(toets.Key.ToString());
-                            if (toets.Key.Equals(ConsoleKey.UpArrow) && movement != "DOWN" && buttonpressed == "no")
+                            if (testa.Key.Equals(ConsoleKey.UpArrow) && movement != "DOWN" && buttonpressed == "no")
                             {
                                 movement = "UP";
                                 buttonpressed = "yes";
                             }
-                            if (toets.Key.Equals(ConsoleKey.DownArrow) && movement != "UP" && buttonpressed == "no")
+                            if (testa.Key.Equals(ConsoleKey.DownArrow) && movement != "UP" && buttonpressed == "no")
                             {
                                 movement = "DOWN";
                                 buttonpressed = "yes";
                             }
-                            if (toets.Key.Equals(ConsoleKey.LeftArrow) && movement != "RIGHT" && buttonpressed == "no")
+                            if (testa.Key.Equals(ConsoleKey.LeftArrow) && movement != "RIGHT" && buttonpressed == "no")
                             {
                                 movement = "LEFT";
                                 buttonpressed = "yes";
                             }
-                            if (toets.Key.Equals(ConsoleKey.RightArrow) && movement != "LEFT" && buttonpressed == "no")
+                            if (testa.Key.Equals(ConsoleKey.RightArrow) && movement != "LEFT" && buttonpressed == "no")
                             {
                                 movement = "RIGHT";
                                 buttonpressed = "yes";
                             }
-                                if (toets.Key.Equals(ConsoleKey.P))
+                                if (testa.Key.Equals(ConsoleKey.P))
                                 {
                                     paused = !paused;
                                 }
-                                if (toets.Key.Equals(ConsoleKey.Escape))
+                                if (testa.Key.Equals(ConsoleKey.Escape))
                                 {
                                     Environment.Exit(0);
                                 }
                             }
 
                         }
-                    xposlijf.Add(snakehead.xpos);
-                    yposlijf.Add(snakehead.ypos);
+                    xposkropp.Add(snakehead.xpos);
+                    yposkropp.Add(snakehead.ypos);
                     switch (movement)
                     {
                         case "UP":
@@ -135,10 +135,10 @@ namespace SnakePrj
                             snakehead.xpos++;
                             break;
                     }
-                    if (xposlijf.Count() > score)
+                    if (xposkropp.Count() > score)
                     {
-                        xposlijf.RemoveAt(0);
-                        yposlijf.RemoveAt(0);
+                        xposkropp.RemoveAt(0);
+                        yposkropp.RemoveAt(0);
                     }
                         else
                         {
