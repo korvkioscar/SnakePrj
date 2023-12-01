@@ -21,6 +21,7 @@ namespace SnakePrj
                 else if (choicelvl == 2) speedlvl = 200;
                 else if (choicelvl == 3) speedlvl = 100;
                 else Console.WriteLine("Wrong input!");
+                Console.Clear();
 
                 Console.WindowHeight = 16;
                 Console.WindowWidth = 32;
