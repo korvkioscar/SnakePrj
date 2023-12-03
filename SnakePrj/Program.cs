@@ -13,9 +13,10 @@ namespace SnakePrj
         {
             static void Main(string[] args)
             {
+                Console.WriteLine("Welcome to Snake!");
                 //Choose difficulty
                 int choicelvl, speedlvl = 400;
-                Console.WriteLine("Choose level:\n1. Easy\n2. Medium\n3.Hard");
+                Console.WriteLine("Choose level:\n1. Easy\n2. Medium\n3. Hard");
                 choicelvl = int.Parse(Console.ReadLine());
                 if (choicelvl == 1) speedlvl = 400;
                 else if (choicelvl == 2) speedlvl = 200;
@@ -37,13 +38,13 @@ namespace SnakePrj
                 string movement = "RIGHT";
                 List<int> xposkropp = new List<int>();
                 List<int> yposkropp = new List<int>();
-                int berryx = randomnummer.Next(0, screenwidth);
-                int berryy = randomnummer.Next(0, screenheight);
+                int berryx = randomnummer.Next(1, screenwidth - 1);
+                int berryy = randomnummer.Next(1, screenheight - 1);
                 DateTime tid = DateTime.Now;
                 DateTime tid2 = DateTime.Now;
                 string buttonpressed = "no";
                
-                // We only draw the border once. It doesn't change.
+                
                 DrawBorder(screenwidth, screenheight);
 
                 bool paused = false;
@@ -174,6 +175,7 @@ namespace SnakePrj
 
             private static void DrawBorder(int screenwidth, int screenheight)
             {
+                //Fix me!: Walls are being thrown around.
                 var horizontalBar = string.Join("", new byte[screenwidth].Select(b => "■").ToArray());
 
                 Console.SetCursorPosition(0, 0);
